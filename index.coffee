@@ -13,7 +13,8 @@ twit = new twitter
 twit.stream 'user', {track: tokens.username}, (stream) ->
   stream.on 'data', (data) ->
     if data.text
-      console.log data.text
+      console.log "Source:", data.text
       data.text.replace '/(http|https):\/\/(.+)\ /g', ''
       data.text.replace '/RT:\ @(\w+)\ /g', ''
-      spawn 'bash' ['./speak.sh', data.text]
+      console.log "Speak:", data.text
+      spawn 'bash', ['./speak.sh', data.text]
