@@ -15,7 +15,7 @@ twit.stream 'user', {track: tokens.username}, (stream) ->
     if data.text
       out = validate data.text
       console.log "Speak:", out
-      spawn 'bash', ['./speak.sh', data.text]
+      spawn 'bash', ['./speak.sh', out]
 
 validate = (text) ->
   text
