@@ -15,9 +15,10 @@ twit.stream 'user', {track: tokens.username}, (stream) ->
     if data.text
       out = validate data.text
       console.log "Speak:", out
-      spawn 'bash', ['./speak.sh', out]
+      #spawn 'bash', ['./speak.sh', out]
 
 validate = (text) ->
   text
-    .replace /https?:\/\/.+\s/gi, ""
-    .replace /RT:\s@\d+\s/gi, ""
+    .replace /https?:\/\/.+(\s|$)/gi, ""
+    .replace /RT\s@\d+:\s/gi, ""
+    .replace /#\d+(\s|$)/gi, ""
