@@ -5,7 +5,7 @@
   "main": "index.coffee",
   "scripts": {
     "start": "./node_modules/coffee-script/bin/coffee index.coffee",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --compilers coffee:coffee-script/register --colors --growl --bail --check-leaks test"
   },
   "author": "nekobato",
   "license": "ISC",

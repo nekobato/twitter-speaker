@@ -13,8 +13,11 @@ twit = new twitter
 twit.stream 'user', {track: tokens.username}, (stream) ->
   stream.on 'data', (data) ->
     if data.text
-      console.log "Source:", data.text
-      data.text.replace '/(http|https):\/\/(.+)\ /g', ''
-      data.text.replace '/RT:\ @(\w+)\ /g', ''
-      console.log "Speak:", data.text
+      out = validate data.text
+      console.log "Speak:", out
       spawn 'bash', ['./speak.sh', data.text]
+
+validate = (text) ->
+  text
+    .replace /https?:\/\/.+\s/gi, ""
+    .replace /RT:\s@\d+\s/gi, ""
